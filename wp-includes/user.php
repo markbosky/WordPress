@@ -139,7 +139,7 @@ function wp_authenticate_username_password($user, $username, $password) {
 
 	if ( !$user ) {
 		return new WP_Error( 'invalid_username',
-			__( '<strong>ERROR</strong>: Invalid username.' ) .
+			__( '<strong>ERROR</strong>: Invalid or incorrect username/password.' ) .
 			' <a href="' . wp_lostpassword_url() . '">' .
 			__( 'Lost your password?' ) .
 			'</a>'
@@ -161,11 +161,7 @@ function wp_authenticate_username_password($user, $username, $password) {
 
 	if ( ! wp_check_password( $password, $user->user_pass, $user->ID ) ) {
 		return new WP_Error( 'incorrect_password',
-			sprintf(
-				/* translators: %s: user name */
-				__( '<strong>ERROR</strong>: The password you entered for the username %s is incorrect.' ),
-				'<strong>' . $username . '</strong>'
-			) .
+			__( '<strong>ERROR</strong>: Invalid or incorrect username/password.' ) .
 			' <a href="' . wp_lostpassword_url() . '">' .
 			__( 'Lost your password?' ) .
 			'</a>'
@@ -217,7 +213,7 @@ function wp_authenticate_email_password( $user, $email, $password ) {
 
 	if ( ! $user ) {
 		return new WP_Error( 'invalid_email',
-			__( '<strong>ERROR</strong>: Invalid email address.' ) .
+			__( '<strong>ERROR</strong>: Invalid or incorrect username/password.' ) .
 			' <a href="' . wp_lostpassword_url() . '">' .
 			__( 'Lost your password?' ) .
 			'</a>'
@@ -235,7 +231,7 @@ function wp_authenticate_email_password( $user, $email, $password ) {
 		return new WP_Error( 'incorrect_password',
 			sprintf(
 				/* translators: %s: email address */
-				__( '<strong>ERROR</strong>: The password you entered for the email address %s is incorrect.' ),
+				__( '<strong>ERROR</strong>: Invalid or incorrect username/password.' ),
 				'<strong>' . $email . '</strong>'
 			) .
 			' <a href="' . wp_lostpassword_url() . '">' .
